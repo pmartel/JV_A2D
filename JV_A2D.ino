@@ -1,7 +1,12 @@
+
 #include <Wire.h> 
 #include <Adafruit_ADS1015.h>
+#include <Streaming.h>
+
 // a2d
 //
+
+// just output data at 100 msec
 Adafruit_ADS1115 ads1115;
 void setup()
 {
@@ -17,12 +22,13 @@ void setup()
  //  ads1115.setGain(GAIN_EIGHT);   // 8x gain   +/- 0.512V  1 bit = 0.25mV
  ads1115.setGain(GAIN_SIXTEEN); // 16x gain  +/- 0.256V  1 bit = 0.125mV
   Serial.begin(115200);
+  Serial << "Differential mode 100 msec" << endl;  
 }
 void loop()
 {
 int results;
     results = ads1115.readADC_Differential_0_1();
-    Serial.print("Differential: "); Serial.print(results); Serial.print(" "); Serial.println(results, HEX); 
+    Serial << results << endl;
   
   delay(100);
 }
